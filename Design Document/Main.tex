@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Design and Implementation of a Teleoperated Robot for Industrial Inspection, Repair, and Maintenance (IRM) Tasks}
+\author{Lars Gielen }
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper proposes a comprehensive design and implementation of a teleoperated robot tailored for Industrial Inspection, Repair, and Maintenance (IRM) tasks in industrial facilities. Due to safety concerns and limitations in autonomous robotics, a teleoperated solution is chosen to ensure the safety of operations while keeping human operators out of harm's way. The robot is equipped with a range of sensors and actuators necessary for efficient task execution. The teleoperation interface is designed to be accessible via a web browser, ensuring device agnostic operation. The system includes simulation capabilities for testing and validation purposes. This paper outlines the design principles, hardware components, software architecture, and teleoperation mechanism of the proposed system.
+\end{abstract}
+
+\section{Introduction}
+
+Industrial facilities often require routine inspection, repair, and maintenance (IRM) tasks to ensure optimal operation and safety standards. However, performing these tasks manually can be hazardous and time-consuming. To address these challenges, this paper presents a teleoperated robot designed to execute IRM tasks in industrial environments. The teleoperation capability ensures human operators can remotely control the robot, mitigating safety risks associated with manual interventions.
+
+\section{Design Requirements}
+
+The design of the teleoperated robot for IRM tasks is guided by the following requirements:
+
+\begin{itemize}
+    \item Safety: Ensure the safety of operations in the industrial facility, preventing damage to equipment and minimizing risks to human operators.
+    \item Teleoperation: Enable remote control of the robot via a web browser interface to facilitate device-agnostic operation.
+    \item Sensor Suite: Equip the robot with sensors for environmental perception, object detection, and monitoring of critical parameters.
+    \item Actuation Mechanisms: Implement actuators for manipulation, locomotion, and tool operation to perform diverse IRM tasks.
+    \item Simulation Environment: Develop a simulated environment for testing and validation of the teleoperated system.
+\end{itemize}
+
+\section{Hardware Components}
+
+The teleoperated robot comprises the following hardware components:
+
+\begin{itemize}
+    \item Robotic Platform: A mobile base equipped with omnidirectional wheels for agile navigation in industrial environments.
+    \item Manipulator Arm: A multi-degree-of-freedom arm with grippers and tool attachments for manipulation tasks.
+    \item Sensor Suite: Includes cameras, LiDAR, ultrasonic sensors, and inertial measurement units (IMUs) for perception and environment monitoring.
+    \item Communication System: Utilizes Wi-Fi or cellular connectivity for real-time communication between the robot and teleoperation interface.
+\end{itemize}
+
+\section{Software Architecture}
+
+The software architecture of the teleoperated robot consists of the following modules:
+
+\begin{itemize}
+    \item Perception: Processes sensor data to generate environmental maps, detect objects, and identify obstacles.
+    \item Control: Implements teleoperation commands to control the robot's motion, manipulator arm, and tool operations.
+    \item Safety Monitoring: Monitors environmental conditions and robot status to prevent collisions, avoid hazards, and ensure safe operations.
+    \item User Interface: Develops a web-based interface for teleoperation, providing live video feeds, control buttons, and status indicators.
+    \item Simulation Environment: Integrates a simulation framework for testing and validating the teleoperated system in various scenarios.
+\end{itemize}
+
+\section{Teleoperation Mechanism}
+
+The teleoperation mechanism allows human operators to remotely control the robot's actions through a web browser interface. Key features include:
+
+\begin{itemize}
+    \item Live Video Streaming: Provides real-time video feeds from onboard cameras, enabling operators to visualize the robot's surroundings.
+    \item Control Interface: Offers intuitive controls for driving the robot, manipulating the arm, and activating tools.
+    \item Safety Overrides: Incorporates emergency stop buttons and collision avoidance algorithms to prevent accidents and ensure safe operation.
+    \item Feedback Mechanisms: Provides visual and auditory feedback to the operator, indicating the robot's status, battery level, and task completion.
+\end{itemize}
+
+\section{Conclusion}
+
+In conclusion, the proposed teleoperated robot offers a versatile solution for performing inspection, repair, and maintenance tasks in industrial facilities. By prioritizing safety, incorporating advanced sensors and actuators, and enabling intuitive teleoperation via a web browser interface, the system enhances operational efficiency while minimizing risks to human operators. Future work may focus on further optimization, integration with existing industrial systems, and deployment in real-world environments.
+
+\end{document}
