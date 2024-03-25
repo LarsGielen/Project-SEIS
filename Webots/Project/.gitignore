@@ -58,6 +58,7 @@ Thumbs.db
 
 # IDE files
 .vscode
+/.vscode
 
 # Local rules #
 ###############
