@@ -4,3 +4,36 @@
 .key-btn.active {
     background-color: gray;
 }
+
+.keyboardInput {
+    width: 200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: 50px;
+
+    #z-btn {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    #q-btn {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    #s-btn {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    #d-btn {
+        grid-column: 3;
+        grid-row: 2;
+    }
+}
+
+
+.btn {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+}

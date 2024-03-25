@@ -12,7 +12,7 @@ function handleKeyPress(key) {
 
 document.addEventListener('keydown', function(event) {
     const key = event.key.toUpperCase();
-    if (['Z', 'Q', 'S', 'D'].includes(key)) {
+    if (['Z', 'Q', 'S', 'D'].includes(key) && !keyStatus[key]) {
         keyStatus[key] = true;
         handleKeyPress(key);
     }
@@ -20,7 +20,7 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
     const key = event.key.toUpperCase();
-    if (['Z', 'Q', 'S', 'D'].includes(key)) {
+    if (['Z', 'Q', 'S', 'D'].includes(key) && keyStatus[key]) {
         keyStatus[key] = false;
         handleKeyPress(key);
     }
@@ -45,7 +45,11 @@ function publishKey(key) {
     } else if (keyStatus['D']) {
         vector.x = 1;
     }
-
-    const jsonMessage = JSON.stringify(vector);
+    var size = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+    if (size === 0) {
+        size = 1;
+    }
+    const normVector = { x: vector.x / size, y: vector.y / size };
+    const jsonMessage = JSON.stringify(normVector);
     sendData(jsonMessage);
 }

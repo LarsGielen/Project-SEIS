@@ -26,7 +26,8 @@ function onMessageArrived(message) {
 }
 
 function sendData(data) {
-    const message = new Paho.MQTT.Message(data);
+    var message = new Paho.MQTT.Message(data);
+    message.qos = 2;
     message.destinationName = "Robot/input";
     client.send(message);
 }
