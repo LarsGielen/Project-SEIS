@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurtleBot3 Teleoperation</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+    <script src="mqtt.js"></script>
+    <script src="keyboardInput.js"></script>
+
+    <link rel="stylesheet" href="keyboardInput.css">
+</head>
+<body>
+    <p>Press Z, Q, S, or D keys to send the corresponding input</p>
+
+    <div id="key-status">
+        <button id="z-btn" class="key-btn" disabled>Z</button>
+        <button id="q-btn" class="key-btn" disabled>Q</button>
+        <button id="s-btn" class="key-btn" disabled>S</button>
+        <button id="d-btn" class="key-btn" disabled>D</button>
+    </div>
+</body>
+</html>
