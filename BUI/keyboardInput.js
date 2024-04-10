@@ -50,6 +50,7 @@ function publishKey(key) {
         size = 1;
     }
     const normVector = { x: vector.x / size, y: vector.y / size };
-    const jsonMessage = JSON.stringify(normVector);
+    const timestamp = Date.now()
+    const jsonMessage = JSON.stringify({normVector, timestamp});
     sendData(jsonMessage);
 }

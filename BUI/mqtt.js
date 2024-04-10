@@ -1,4 +1,4 @@
-const client = new Paho.MQTT.Client('74a64f22a34a4978b44bb41303d40ba0.s1.eu.hivemq.cloud', Number(8884), "/mqtt", 'client-id:' + Math.random().toString(16).substr(2, 8));
+const client = new Paho.MQTT.Client('19dec47c4ea94f028a9fb739c51578c2.s1.eu.hivemq.cloud', Number(8884), "/mqtt", 'client-id:' + Math.random().toString(16).substr(2, 8));
 
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;

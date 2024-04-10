@@ -3,10 +3,18 @@
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
-import Modules.input
+from Modules.input_module import Input
+from Modules.movement_module import Movement
+from Modules.perception_module import Perception
+import numpy as np
+import math
 
 # create the Robot instance.
 robot = Robot()
+
+input = Input()
+movement = Movement(robot, 6.5)
+perception = Perception(robot)
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
@@ -21,10 +29,17 @@ timestep = int(robot.getBasicTimeStep())
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
     # Read the sensors:
-    # Enter here functions to read sensor data, like:
-    #  val = ds.getValue()
 
     # Process sensor data here.
+    lidar_points = perception.getPointsInRange(0.3)
+
+    if len(lidar_points) == 0:
+        movement.move(input.input_data.direction_forward, input.input_data.direction_right)
+    else:
+        movement.move(0, 0)
+        average_point = np.mean(lidar_points, axis=0)
+        if (int(math.copysign(1, input.input_data.direction_forward)) != int(math.copysign(1, average_point[0])) or input.input_data.direction_forward == 0):    
+            movement.move(input.input_data.direction_forward, input.input_data.direction_right)
 
     # Enter here functions to send actuator commands, like:
     #  motor.setPosition(10.0)
