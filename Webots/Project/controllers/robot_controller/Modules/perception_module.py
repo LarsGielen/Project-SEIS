@@ -1,4 +1,4 @@
-from controller import Robot, Lidar, LidarPoint
+from controller import Robot, Lidar, LidarPoint, Camera
 from dataclasses import dataclass
 import numpy as np
 
@@ -10,9 +10,15 @@ class Point():
 class Perception():
     def __init__(self, robot: Robot):
         self.robot = robot
+
+        # Lidar
         self.lidar: Lidar = robot.getDevice('LDS-01')
         self.lidar.enable(10)
         self.lidar.enablePointCloud()
+
+        # Camera
+        self.camera: Camera = robot.getDevice('camera')
+        self.camera.enable(10)
 
     def getLidarPoints(self) -> list[LidarPoint]:
         ''' Returns all lidar points '''

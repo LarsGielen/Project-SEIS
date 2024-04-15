@@ -5,13 +5,15 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/CircleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/robotis/turtlebot/protos/TurtleBot3Burger.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nvidia/jetbot/protos/JetBotRaspberryPiCamera.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/devices/robotis/protos/RobotisLds01.proto"
 
 WorldInfo {
   basicTimeStep 64
 }
 Viewpoint {
-  orientation 0.2939246272380875 0.687424299557384 -0.6641205808292584 1.144036319707207
-  position -0.49370781445382966 0.5166459458594029 0.7864220762790127
+  orientation 0.17485629634216235 0.10052221774184662 -0.9794491101480274 2.1159474119421704
+  position 0.6300530348028938 0.8740204635635493 0.5512251145136372
   follow "TurtleBot3Burger"
   followType "Pan and Tilt Shot"
 }
@@ -78,22 +80,23 @@ TurtleBot3Burger {
   hidden position_0_2 3.837717462856311e-06
   hidden position2_0_2 0.0008877851107109055
   hidden position3_0_2 -1.259452776052565e-06
-  hidden linearVelocity_0 4.420321703693778e-14 -1.0301700297760238e-15 3.12370884903638e-14
-  hidden angularVelocity_0 1.0289685485767802e-14 9.164581905334733e-13 4.44251277237872e-16
-  hidden position_1_0 1182.8377599999965
-  hidden position_1_1 2275.6761599999895
-  hidden rotation_2 -0.5665257696641469 0.5826860466931734 0.5826881870224646 2.110711103027252
-  hidden translation_3 -0.027760310603277487 -0.01 -0.042229299434291934
-  hidden rotation_3 -0.7323954357614996 0.4814536440765247 0.48145541255775515 1.8773188402285734
-  hidden rotation_8 0 -1 0 1.5707959999736583
-  hidden linearVelocity_8 3.0224063667388276e-14 -2.004759382573299e-15 8.7246710365594755e-16
-  hidden angularVelocity_8 6.291415567222652e-14 9.16145558454411e-13 1.8015327328919004e-16
-  hidden linearVelocity_9 3.022727795823596e-14 2.4363123573062024e-16 -1.6207941067927074e-15
-  hidden angularVelocity_9 -4.94266991690376e-15 9.159217344141044e-13 2.0651465663510314e-16
-  hidden rotation_10 0.004322125254056654 0.9999896560261798 -0.001416712366988212 0.0008877942960720675
-  hidden linearVelocity_10 2.9357281777376617e-15 -6.77326316205691e-16 -5.073150370823969e-15
-  hidden angularVelocity_10 1.6933157621424494e-13 7.33932032137266e-13 0
+  hidden position_3_0 1182.8377599999965
+  hidden position_3_1 2275.6761599999895
+  hidden rotation_4 -0.5665257696641469 0.5826860466931734 0.5826881870224646 2.110711103027252
+  hidden translation_5 -0.02776031060327748 -0.01 -0.04222929943429195
+  hidden rotation_5 -0.7323954357614996 0.4814536440765247 0.48145541255775515 1.8773188402285734
+  hidden rotation_10 0 -1 0 1.5707959999209746
+  hidden rotation_11 -0.7071047816948446 1.6798597783762626e-15 -0.7071087806725966 3.141588
+  hidden rotation_12 0.004322125254056654 0.9999896560261798 -0.001416712366988212 0.0008877942960720675
   translation -3.2855272946719083e-09 -4.950206748688141e-10 -0.0004935078559716866
   rotation -0.0020966150393490067 -0.999997802052494 9.77536890228478e-06 0.009367550974341395
   controller "robot_controller"
+  extensionSlot [
+    JetBotRaspberryPiCamera {
+      translation 0.06 0 -0.04
+      fieldOfView 1.2
+    }
+    RobotisLds01 {
+    }
+  ]
 }
