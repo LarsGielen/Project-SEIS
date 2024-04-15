@@ -11,16 +11,30 @@
     <script src="mqtt.js"></script>
     <script src="keyboardInput.js"></script>
 
-    <link rel="stylesheet" href="keyboardInput.css">
+    <link rel="stylesheet" href="css/keyboardInput.css">
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
 <body>
-    <p>Press Z, Q, S, or D keys to send the corresponding input</p>
-
-    <div class="keyboardInput">
-        <button id="z-btn" class="btn" disabled><i class="fas fa-arrow-up"></i></button>
-        <button id="q-btn" class="btn" disabled><i class="fas fa-arrow-left"></i></button>
-        <button id="s-btn" class="btn" disabled><i class="fas fa-arrow-down"></i></button>
-        <button id="d-btn" class="btn" disabled><i class="fas fa-arrow-right"></i></button>
+    <div id="leftPane">
+        <video controls width="640" height="360">
+            <source src="VID-20220629-WA0010.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    
+        <p>Press Z, Q, S, or D keys to send the corresponding input</p>
+        <div id="keyboardInput">
+            <button id="z-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-up"></i></button>
+            <button id="q-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-left"></i></button>
+            <button id="s-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-down"></i></button>
+            <button id="d-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-right"></i></button>
+        </div>
     </div>
+    
+    <div id="rightPane">
+        <button id="emergencyStop">Emergency Stop</button>
+        <button id="obstacleIndicator" disabled>Obstacle</button>
+    </div>
+
 </body>
 </html>

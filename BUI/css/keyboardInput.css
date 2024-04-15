@@ -5,7 +5,7 @@
     background-color: gray;
 }
 
-.keyboardInput {
+#keyboardInput {
     width: 200px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -32,7 +32,7 @@
 }
 
 
-.btn {
+.keyInputBtn {
     width: 50px;
     height: 50px;
     margin: 0 5px;
