@@ -33,6 +33,6 @@ class Perception():
         
         return [(lidar_points[i].x, lidar_points[i].y) for i in indices_points_in_range]
     
-    def getCameraCameraData(self) -> List[List[List[int]]]:
-        return self._camera.getImageArray()
+    def getCameraCameraData(self) -> str:
+        return self._camera.getImage()
 

@@ -1,17 +1,20 @@
 from websockets.server import serve
+from websockets import exceptions 
 from threading import Thread
-from typing import Tuple
 from PIL import Image
-import numpy as np
-import asyncio
 import io
+import asyncio
 
 class VideoStreamServer():
-    def __init__(self, camera_size: Tuple[int, int]) -> None:
-        self._image_data = np.zeros(camera_size)
+    def __init__(self) -> None:
+        self._image_binary = None
 
-    def setImageData(self, image_data):
-        self._image_data = image_data
+    def setImageData(self, image_data: str):
+        image = Image.frombytes('RGBA', (1280, 720), image_data, 'raw', 'BGRA').convert('RGB')
+        with io.BytesIO() as output:
+            image.save(output, format="JPEG")
+            binary = output.getvalue()
+        self._image_binary = binary
 
     def startServerThreaded(self):
         thread = Thread(target=lambda: asyncio.run(self.startServer()))
@@ -23,11 +26,11 @@ class VideoStreamServer():
             await asyncio.Future()  # run forever
 
     async def _handler(self, websocket):
+        print('Websocket connected')
         while True:
-            image_array = np.array(self._image_data).astype(np.uint8).reshape((720, 1280, 3))
-            image = Image.fromarray(image_array)
-            with io.BytesIO() as output:
-                image.save(output, format="JPEG")
-                binary = output.getvalue()
-
-            await websocket.send(binary)
+            try:
+                if self._image_binary is not None:
+                    await websocket.send(self._image_binary)
+            except exceptions.ConnectionClosed:
+                print('Websocket disconnected')
+                break

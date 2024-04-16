@@ -10,6 +10,7 @@
 
     <script src="mqtt.js"></script>
     <script src="keyboardInput.js"></script>
+    <script src="videostreamReceiver.js"></script>
 
     <link rel="stylesheet" href="css/keyboardInput.css">
     <link rel="stylesheet" href="css/main.css">
@@ -17,10 +18,7 @@
 </head>
 <body>
     <div id="leftPane">
-        <video controls width="640" height="360">
-            <source src="VID-20220629-WA0010.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <img id="cameraImage">
     
         <p>Press Z, Q, S, or D keys to send the corresponding input</p>
         <div id="keyboardInput">

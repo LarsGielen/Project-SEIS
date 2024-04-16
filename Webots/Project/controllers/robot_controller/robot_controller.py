@@ -7,10 +7,10 @@ from Modules.input_module import Input
 from Modules.movement_module import Movement
 from Modules.perception_module import Perception
 from Modules.output_module import Output
-from Webots.Project.controllers.robot_controller.Modules.videostream_module import VideoStreamServer
+from Modules.videostream_module import VideoStreamServer
 import numpy as np
 import math
-
+from PIL import Image
 # create the Robot instance.
 robot = Robot()
 
@@ -34,10 +34,10 @@ while robot.step(timestep) != -1:
     else:
         movement.move(0, 0)
         average_point = np.mean(lidar_points, axis=0)
-        if (int(math.copysign(1, input.input_data.direction_forward)) != int(math.copysign(1, average_point[0])) or input.input_data.direction_forward == 0):    
+        if (int(math.copysign(1, input.input_data.direction_forward)) != int(math.copysign(1, average_point[0])) or input.input_data.direction_forward == 0):
             movement.move(input.input_data.direction_forward, input.input_data.direction_right)
 
     # Send sensor data to interface
-    output.setImageData(perception.getCameraCameraData())
+    output.setCameraData(perception.getCameraCameraData())
 
 # Enter here exit cleanup code.

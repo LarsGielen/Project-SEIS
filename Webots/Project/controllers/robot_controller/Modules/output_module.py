@@ -6,5 +6,5 @@ class Output():
         self._video_stream = VideoStreamServer()
         self._video_stream.startServerThreaded()
 
-    def setCameraData(self, camera_data: List[List[List[int]]]):
+    def setCameraData(self, camera_data: str):
         self._video_stream.setImageData(camera_data)
