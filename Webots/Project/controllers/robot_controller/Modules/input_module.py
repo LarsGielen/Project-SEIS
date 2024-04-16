@@ -16,17 +16,17 @@ class Input():
         self.input_data = InputData(0, 0, 0)
 
         # setup client
-        self.client = MQTTConnector().client
+        self._client = MQTTConnector().client
 
         # callbacks
-        self.client.on_connect = self.on_connect
-        self.client.on_message = self.on_message
+        self._client.on_connect = self._on_connect
+        self._client.on_message = self._on_message
 
-    def on_connect(self, client, userdata, flags, rc, properties=None):
+    def _on_connect(self, client, userdata, flags, rc, properties=None):
         print(f'CONNACK received with code {rc}.')
-        self.client.subscribe("Robot/input")
+        self._client.subscribe("Robot/input")
 
-    def on_message(self, client, userdata, message):
+    def _on_message(self, client, userdata, message):
         '''
             Input is expected in json format and to be formatted like:
 

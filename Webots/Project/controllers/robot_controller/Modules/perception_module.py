@@ -10,20 +10,20 @@ class Point():
 
 class Perception():
     def __init__(self, robot: Robot):
-        self.robot = robot
+        self._robot = robot
 
         # Lidar
-        self.lidar: Lidar = robot.getDevice('LDS-01')
-        self.lidar.enable(10)
-        self.lidar.enablePointCloud()
+        self._lidar: Lidar = robot.getDevice('LDS-01')
+        self._lidar.enable(10)
+        self._lidar.enablePointCloud()
 
         # Camera
-        self.camera: Camera = robot.getDevice('camera')
-        self.camera.enable(10)
+        self._camera: Camera = robot.getDevice('camera')
+        self._camera.enable(10)
 
     def getLidarPoints(self) -> List[LidarPoint]:
         ''' Returns all lidar points '''
-        return self.lidar.getPointCloud()
+        return self._lidar.getPointCloud()
     
     def getPointsInRange(self, range: float) -> List[Point]:
         ''' Returns all lidar points that are closer than 'range' meters and the average of these points'''
@@ -33,6 +33,6 @@ class Perception():
         
         return [(lidar_points[i].x, lidar_points[i].y) for i in indices_points_in_range]
     
-    def getCameraImageData(self) -> List[List[List[int]]]:
-        return self.camera.getImageArray()
+    def getCameraCameraData(self) -> List[List[List[int]]]:
+        return self._camera.getImageArray()
 

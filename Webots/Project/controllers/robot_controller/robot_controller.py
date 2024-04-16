@@ -6,6 +6,7 @@ from controller import Robot
 from Modules.input_module import Input
 from Modules.movement_module import Movement
 from Modules.perception_module import Perception
+from Modules.output_module import Output
 from Webots.Project.controllers.robot_controller.Modules.videostream_module import VideoStreamServer
 import numpy as np
 import math
@@ -16,26 +17,18 @@ robot = Robot()
 input = Input()
 movement = Movement(robot, 6.5)
 perception = Perception(robot)
-video_stream = VideoStreamServer()
-video_stream.startServerThreaded()
+output = Output()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
-
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
 
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
     # Read the sensors:
-
-    # Process sensor data here.
     lidar_points = perception.getPointsInRange(0.3)
 
+    # Move Based on input and sensor values
     if len(lidar_points) == 0:
         movement.move(input.input_data.direction_forward, input.input_data.direction_right)
     else:
@@ -44,10 +37,7 @@ while robot.step(timestep) != -1:
         if (int(math.copysign(1, input.input_data.direction_forward)) != int(math.copysign(1, average_point[0])) or input.input_data.direction_forward == 0):    
             movement.move(input.input_data.direction_forward, input.input_data.direction_right)
 
-    video_stream.setImageData(perception.getCameraImageData())
-
-    # Enter here functions to send actuator commands, like:
-    #  motor.setPosition(10.0)
-    pass
+    # Send sensor data to interface
+    output.setImageData(perception.getCameraCameraData())
 
 # Enter here exit cleanup code.
