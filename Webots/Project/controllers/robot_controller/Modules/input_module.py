@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-import paho.mqtt.client as paho
+from Modules.mqtt_connector import MQTTConnector
 import json
 
 @dataclass
@@ -10,32 +10,17 @@ class InputData():
 
 
 class Input():
-    BROKER = "19dec47c4ea94f028a9fb739c51578c2.s1.eu.hivemq.cloud"
-    PORT = 8883
-
     input_data: InputData = InputData(0, 0, 0)
 
     def __init__(self):
         self.input_data = InputData(0, 0, 0)
 
         # setup client
-        self.client = paho.Client()
-        self.client.tls_set(tls_version=paho.ssl.PROTOCOL_TLS)
-        self.client.username_pw_set("Robot", "Robot123")
+        self.client = MQTTConnector().client
 
         # callbacks
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
-
-        # connect with broker
-        self.client.connect(
-            host = self.BROKER, 
-            port = self.PORT,
-            clean_start = paho.MQTT_CLEAN_START_FIRST_ONLY,
-            keepalive = 60
-        )
-
-        self.client.loop_start()
 
     def on_connect(self, client, userdata, flags, rc, properties=None):
         print(f'CONNACK received with code {rc}.')

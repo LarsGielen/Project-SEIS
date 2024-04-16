@@ -1,0 +1,10 @@
+#leftPane {
+    float: left;
+    width: 50%;
+}
+
+#rightPane {
+    float: right;
+    width: 50%;
+}
+
