@@ -4,7 +4,6 @@ window.addEventListener('load', (event) => {
     function onMessage(event) {
         console.log(event.data)
         const imageURL = URL.createObjectURL(event.data);
-        const image = document.createElement('image');
         imageElement.src = imageURL;
         image.onload = function() {URL.revokeObjectURL(imageURL)}
     }
