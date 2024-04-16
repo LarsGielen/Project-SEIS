@@ -6,6 +6,7 @@ from controller import Robot
 from Modules.input_module import Input
 from Modules.movement_module import Movement
 from Modules.perception_module import Perception
+from Webots.Project.controllers.robot_controller.Modules.videostream_module import VideoStreamServer
 import numpy as np
 import math
 
@@ -15,6 +16,8 @@ robot = Robot()
 input = Input()
 movement = Movement(robot, 6.5)
 perception = Perception(robot)
+video_stream = VideoStreamServer()
+video_stream.startServerThreaded()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
@@ -40,6 +43,8 @@ while robot.step(timestep) != -1:
         average_point = np.mean(lidar_points, axis=0)
         if (int(math.copysign(1, input.input_data.direction_forward)) != int(math.copysign(1, average_point[0])) or input.input_data.direction_forward == 0):    
             movement.move(input.input_data.direction_forward, input.input_data.direction_right)
+
+    video_stream.setImageData(perception.getCameraImageData())
 
     # Enter here functions to send actuator commands, like:
     #  motor.setPosition(10.0)

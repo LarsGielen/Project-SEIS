@@ -19,7 +19,7 @@ class Input():
         self.input_data = InputData(0, 0, 0)
 
         # setup client
-        self.client = paho.Client(callback_api_version=paho.CallbackAPIVersion.VERSION2)
+        self.client = paho.Client()
         self.client.tls_set(tls_version=paho.ssl.PROTOCOL_TLS)
         self.client.username_pw_set("Robot", "Robot123")
 
