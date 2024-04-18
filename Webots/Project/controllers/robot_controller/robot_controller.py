@@ -40,4 +40,7 @@ while robot.step(timestep) != -1:
     # Send sensor data to interface
     output.setCameraData(perception.getCameraCameraData())
 
+    # Send lidar data to the interface
+    output.setLidarData(perception.getPointsInRange(3))
+
 # Enter here exit cleanup code.
