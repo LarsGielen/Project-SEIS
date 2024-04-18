@@ -6,7 +6,7 @@ class MQTTConnector():
     _PORT = 8883
     
     def __init__(self):
-        self.client = paho.Client()
+        self.client = paho.Client(callback_api_version=paho.CallbackAPIVersion.VERSION2)
         self.client.tls_set(tls_version=paho.ssl.PROTOCOL_TLS)
         self.client.username_pw_set("Robot", "Robot123")
 

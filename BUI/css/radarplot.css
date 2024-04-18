@@ -1,0 +1,35 @@
+/* Source: https://stackoverflow.com/questions/18353107/radar-scanner-rotation-effect */
+.radar {
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  aspect-ratio: 1;
+  background: #000;
+  border-radius: 50%;
+}
+
+.radarPoint {
+  position: absolute;
+  left: calc(var(--x) * 100%);
+  top: calc(var(--y) * 100%);
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin: -2px;
+  background: #cf5;
+  box-shadow: 0 0 10px 5px rgba(100, 255, 0, 0.5);
+  opacity: 1;
+}
+
+.radarCircle {
+    position: absolute;
+    left: calc((0.5 - var(--size) / 2) * 100%);
+    top: calc((0.5 - var(--size) / 2) * 100%);
+    border-radius: 50%;
+    width: calc(var(--size) * 100%);
+    height: calc(var(--size) * 100%);
+    margin: -2px;
+    box-shadow: 0 0 10px 5px rgba(100, 255, 0, 0.5);
+    background: #000;
+    opacity: 1;
+}

@@ -11,9 +11,11 @@
     <script src="mqtt.js"></script>
     <script src="keyboardInput.js"></script>
     <script src="videostreamReceiver.js"></script>
+    <script src="radarplot.js"></script>
 
     <link rel="stylesheet" href="css/keyboardInput.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/radarplot.css">
 
 </head>
 <body>
@@ -32,6 +34,16 @@
     <div id="rightPane">
         <button id="emergencyStop">Emergency Stop</button>
         <button id="obstacleIndicator" disabled>Obstacle</button>
+
+        <div id="radarplot"class="radar">
+            <!-- Points are relative from left top corner -->
+            <div class="radarCircle" style="--size:0.5"></div>
+            <div class="radarPoint" style="--x:0.1; --y:0.5"></div>
+            <div class="radarPoint" style="--x:0.2; --y:0.5"></div>
+            <div class="radarPoint" style="--x:0.3; --y:0.5"></div>
+            <div class="radarPoint" style="--x:0.4; --y:0.5"></div>
+            <div class="radarPoint" style="--x:0.5; --y:0.5"></div>
+        </div>
     </div>
 
 </body>
