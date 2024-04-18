@@ -2,20 +2,21 @@ window.addEventListener('load', (event) => {
     radarElement = document.querySelector('#radarplot')
     
     function onMessage(event) {
-        // console.log(event.data)
-        // const imageURL = URL.createObjectURL(event.data);
-        // imageElement.src = imageURL;
-        // image.onload = function() {URL.revokeObjectURL(imageURL)}
+        addRadarPoint(JSON.parse(event.data))
     }
     
-    // const socket = new WebSocket('ws://localhost:5000');
-    // socket.onopen = (event) => { console.log('connected to radar stream')};
-    // socket.onmessage = onMessage;
+    const socket = new WebSocket('ws://localhost:5001');
+    socket.onopen = (event) => { console.log('connected to radar stream')};
+    socket.onmessage = onMessage;
 
     function addRadarPoint(data) {
         const radarPlot = document.getElementById('radarplot');
-        var max_length = 10;
-        
+        var max_length = 3;
+
+        while (radarPlot.firstChild) {
+            radarPlot.removeChild(radarPlot.lastChild);
+        }
+
         data.forEach(point => {
             point.x = (point.x / max_length) / 2 + 0.5;
             point.y = (point.y / max_length) / 2 + 0.5;

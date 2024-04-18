@@ -2,10 +2,9 @@ window.addEventListener('load', (event) => {
     imageElement = document.querySelector('#cameraImage')
     
     function onMessage(event) {
-        console.log(event.data)
         const imageURL = URL.createObjectURL(event.data);
         imageElement.src = imageURL;
-        image.onload = function() {URL.revokeObjectURL(imageURL)}
+        imageElement.onload = function() {URL.revokeObjectURL(imageURL)}
     }
     
     const socket = new WebSocket('ws://localhost:5000');
