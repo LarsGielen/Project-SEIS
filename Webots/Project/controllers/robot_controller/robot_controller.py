@@ -37,6 +37,10 @@ while robot.step(timestep) != -1:
         if (int(math.copysign(1, input.input_data.direction_forward)) != int(math.copysign(1, average_point[0])) or input.input_data.direction_forward == 0):
             movement.move(input.input_data.direction_forward, input.input_data.direction_right)
 
+    # Check for emergency stop
+    if (input.emergency_stop):
+        movement.move(0, 0)
+
     # Send sensor data to interface
     output.setCameraData(perception.getCameraCameraData())
 

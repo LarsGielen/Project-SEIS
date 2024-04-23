@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from Modules.mqtt_connector import MQTTConnector
+import time
 import json
 
 @dataclass
@@ -11,10 +12,9 @@ class InputData():
 
 class Input():
     input_data: InputData = InputData(0, 0, 0)
+    emergency_stop: bool = False
 
     def __init__(self):
-        self.input_data = InputData(0, 0, 0)
-
         # setup client
         self._client = MQTTConnector().client
 
@@ -24,23 +24,42 @@ class Input():
 
     def _on_connect(self, client, userdata, flags, rc, properties=None):
         print(f'CONNACK received with code {rc}.')
+        print("Subscribing to input")
         self._client.subscribe("Robot/input")
 
+        print("Subscribing to emergency stop")
+        self._client.subscribe("Robot/emergency")
+
     def _on_message(self, client, userdata, message):
-        '''
+        if message.topic == "Robot/input":
+            '''
             Input is expected in json format and to be formatted like:
 
             {
                 'normVector': {'x': 0, 'y': 0}, 
                 'timestamp': 1712759171228
             }
-        '''
-        message_json_string = message.payload.decode()
-        message_data = json.loads(message_json_string)
-        if (self.input_data.timestamp < int(message_data['timestamp'])):
-            self.input_data = InputData( 
-                direction_forward=message_data['normVector']['y'],
-                direction_right=message_data['normVector']['x'],
-                timestamp=message_data['timestamp']
-            )
-        
+            '''
+            message_json_string = message.payload.decode()
+            message_data = json.loads(message_json_string)
+            if (self.input_data.timestamp < int(message_data['timestamp'])):
+                self.input_data = InputData( 
+                    direction_forward=message_data['normVector']['y'],
+                    direction_right=message_data['normVector']['x'],
+                    timestamp=message_data['timestamp']
+                )
+
+        if message.topic == "Robot/emergency":
+            '''
+                Input is expected in json format and to be formatted like:
+
+                {
+                    'emergency': False
+                }
+            '''
+            message_json_string = message.payload.decode()
+            message_data = json.loads(message_json_string)
+            self.emergency_stop = message_data['emergency']
+
+            if (message_data['emergency'] == False):
+                self.input_data = InputData(0, 0, time.time())
