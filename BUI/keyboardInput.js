@@ -52,5 +52,5 @@ function publishKey(key) {
     const normVector = { x: vector.x / size, y: vector.y / size };
     const timestamp = Date.now()
     const jsonMessage = JSON.stringify({normVector, timestamp});
-    sendData(jsonMessage);
+    sendData(jsonMessage, "Robot/input");
 }

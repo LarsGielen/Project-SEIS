@@ -12,7 +12,7 @@ window.addEventListener('load', (event) => {
         setRadarPoints(JSON.parse(event.data))
     }
     
-    const socket = new WebSocket('ws://localhost:5001');
+    const socket = new WebSocket('ws://localhost:5000');
     socket.onopen = (event) => { console.log('connected to radar stream')};
     socket.onmessage = onMessage;
 

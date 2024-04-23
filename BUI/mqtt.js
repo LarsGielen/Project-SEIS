@@ -12,7 +12,6 @@ client.connect({
 
 function onConnect() {
     console.log('Connected to MQTT broker');
-    client.subscribe('Robot/input');
 }
 
 function onConnectionLost(responseObject) {
@@ -25,9 +24,9 @@ function onMessageArrived(message) {
     // console.log('Message received:', message.payloadString);
 }
 
-function sendData(data) {
+function sendData(data, topic) {
     var message = new Paho.MQTT.Message(data);
     message.qos = 2;
-    message.destinationName = "Robot/input";
+    message.destinationName = topic;
     client.send(message);
 }
