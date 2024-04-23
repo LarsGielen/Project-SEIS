@@ -16,8 +16,7 @@
   width: 4px;
   height: 4px;
   margin: -2px;
-  background: #cf5;
-  box-shadow: 0 0 10px 5px rgba(100, 255, 0, 0.5);
+  background: var(--color, rgba(0, 255, 0));
   opacity: 1;
 }
 
@@ -32,4 +31,17 @@
     box-shadow: 0 0 10px 5px rgba(100, 255, 0, 0.5);
     background: #000;
     opacity: 1;
+}
+
+.robotPoint {
+  position: absolute;
+  left: calc(var(--x) * 100%);
+  top: calc(var(--y) * 100%);
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin: -2px;
+  background: rgb(0, 42, 255);
+  box-shadow: 0 0 10px 5px rgba(0, 12, 150, 0.5);
+  opacity: 1;
 }

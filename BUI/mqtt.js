@@ -22,7 +22,7 @@ function onConnectionLost(responseObject) {
 }
 
 function onMessageArrived(message) {
-    console.log('Message received:', message.payloadString);
+    // console.log('Message received:', message.payloadString);
 }
 
 function sendData(data) {
