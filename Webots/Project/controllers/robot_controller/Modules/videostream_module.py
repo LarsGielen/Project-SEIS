@@ -21,7 +21,7 @@ class VideoStreamServer():
         thread.start()
 
     async def _startServer(self):
-        print('Video steam server started')
+        print('Video steam server started\n')
         async with serve(self._handler, "localhost", 5000):
             await asyncio.Future()  # run forever
 
