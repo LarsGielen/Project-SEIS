@@ -8,40 +8,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/keyboardInput.css">
+    <link rel="stylesheet" href="css/radarplot.css">
+
     <script src="mqtt.js"></script>
     <script src="keyboardInput.js"></script>
     <script src="videostreamReceiver.js"></script>
     <script src="emergency.js"></script>
     <script src="radarReceiver.js"></script>
 
-    <link rel="stylesheet" href="css/keyboardInput.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/radarplot.css">
-
 </head>
 <body>
-    <div id="leftPane">
-        <img id="cameraImage">
-    
-        <p>Press Z, Q, S, or D keys to send the corresponding input</p>
-        <div id="keyboardInput">
-            <button id="z-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-up"></i></button>
-            <button id="q-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-left"></i></button>
-            <button id="s-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-down"></i></button>
-            <button id="d-btn" class="keyInputBtn" disabled><i class="fas fa-arrow-right"></i></button>
+    <div id="mainContainer">
+        <img id="cameraImage" src="">
+        
+        <div id="inputGrid">
+            <input type="text" id="videoStreamURLInput" placeholder="Video Stream URL">
+            <input type="text" id="lidarStreamURLInput" placeholder="LiDAR Server URL">
+            <button id="URLOkButton">OK</button>
         </div>
-    </div>
-    
-    <div id="rightPane">
-        <button id="emergencyStop">Emergency Stop</button>
-
-        <div id="radarplot" class="radar">
-            <!-- Points are relative from left top corner -->
+        
+        <div id="keyboardInput">
+            <button id="forward-btn" class="keyInputBtn"><i class="fas fa-arrow-up"></i></button>
+            <button id="left-btn" class="keyInputBtn"><i class="fas fa-arrow-left"></i></button>
+            <button id="backward-btn" class="keyInputBtn"><i class="fas fa-arrow-down"></i></button>
+            <button id="right-btn" class="keyInputBtn"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        
+        <div id="radarplot">
             <div class="radarCircle" style="--size:0.6666"></div>
             <div class="radarCircle" style="--size:0.3333"></div>
-            <div class="robotPoint" style="--x:0.5; --y:0.5;"
+            <div class="robotPoint" style="--x:0.5; --y:0.5;"></div>
         </div>
-    </div>
 
+        <button id="emergencyStop">Emergency Button</button>
+
+    </div>
 </body>
 </html>

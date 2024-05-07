@@ -13,24 +13,23 @@
     justify-content: center;
     margin-top: 50px;
 
-    #z-btn {
+    #forward-btn {
         grid-column: 2;
         grid-row: 1;
     }
-    #q-btn {
+    #left-btn {
         grid-column: 1;
         grid-row: 2;
     }
-    #s-btn {
+    #backward-btn {
         grid-column: 2;
         grid-row: 2;
     }
-    #d-btn {
+    #right-btn {
         grid-column: 3;
         grid-row: 2;
     }
 }
-
 
 .keyInputBtn {
     width: 50px;

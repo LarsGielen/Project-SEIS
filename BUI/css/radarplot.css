@@ -1,6 +1,5 @@
 /* Source: https://stackoverflow.com/questions/18353107/radar-scanner-rotation-effect */
-.radar {
-  position: relative;
+#radarplot {
   overflow: hidden;
   width: 300px;
   aspect-ratio: 1;
