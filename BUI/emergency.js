@@ -4,9 +4,12 @@ window.addEventListener('load', function() {
 
     emergencyBtn.addEventListener('click', function() {
         isEmergencyOn = !isEmergencyOn;
-        const jsonMessage = JSON.stringify({ emergency: isEmergencyOn });
-        
-        sendData(jsonMessage, "Robot/emergency");
+        const jsonMessage = JSON.stringify({ 
+            type: "EMERGENCY", 
+            data: {emergency: isEmergencyOn} 
+        });
+
+        inputSocket.send(jsonMessage);
 
         emergencyBtn.style.backgroundColor = isEmergencyOn ? 'red' : '';
         emergencyBtn.style.borderColor = isEmergencyOn ? 'red' : '';

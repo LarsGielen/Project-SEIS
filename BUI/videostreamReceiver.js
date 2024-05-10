@@ -5,7 +5,6 @@ window.addEventListener('load', (event) => {
     imageElement = document.querySelector('#cameraImage')
     
     videoServerInput = document.querySelector("#videoStreamURLInput")
-    videoServerInput.value = "localhost:5000"
 
     document.querySelector("#URLOkButton").addEventListener('click', (event) => setupVideoStream(videoServerInput.value));
 });

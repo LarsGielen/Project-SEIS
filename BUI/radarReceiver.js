@@ -6,7 +6,6 @@ var radarSocket = null;
 window.addEventListener('load', (event) => { 
     radarElement = document.querySelector('#radarplot')
     radarServerInput = document.querySelector("#lidarStreamURLInput")
-    radarServerInput.value = "localhost:5001"
 
     document.querySelector("#URLOkButton").addEventListener('click', (event) => setupRadarStream(radarServerInput.value));
 });

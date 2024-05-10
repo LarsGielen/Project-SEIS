@@ -26,8 +26,8 @@ class LidarStreamServer():
         thread.start()
 
     async def _startServer(self):
-        print('Lidar steam server started\n')
-        async with serve(self._handler, "localhost", 5001):
+        print('Lidar steam server started on port 5002\n')
+        async with serve(self._handler, "0.0.0.0", 5002):
             await asyncio.Future()  # run forever
 
     async def _handler(self, websocket):

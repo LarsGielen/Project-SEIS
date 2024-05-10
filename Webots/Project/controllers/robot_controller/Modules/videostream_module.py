@@ -21,8 +21,8 @@ class VideoStreamServer():
         thread.start()
 
     async def _startServer(self):
-        print('Video steam server started\n')
-        async with serve(self._handler, "localhost", 5000):
+        print('Video steam server started on port 5001\n')
+        async with serve(self._handler, "0.0.0.0", 5001):
             await asyncio.Future()  # run forever
 
     async def _handler(self, websocket):

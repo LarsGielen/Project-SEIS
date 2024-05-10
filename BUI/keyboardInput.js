@@ -1,3 +1,16 @@
+var inputSocket = null;
+
+window.addEventListener('load', (event) => {    
+    inputServerInput = document.querySelector("#inputServerURLInput")
+
+    document.querySelector("#URLOkButton").addEventListener('click', (event) => setupInputConnection(inputServerInput.value));
+});
+
+function setupInputConnection(url) {
+    inputSocket = new WebSocket('ws://' + url);
+    inputSocket.onopen = (event) => { console.log('connected to input server')};
+}
+
 let keyStatus = {
     'forward': false,
     'left': false,
@@ -7,10 +20,12 @@ let keyStatus = {
 
 function handleKeyPress(key) {
     toggleButton(key);
-    publishKey(key);
+    publishKey();
 }
 
 document.addEventListener('keydown', function(event) {
+    if (event.repeat) return;
+
     const key = event.key.toUpperCase();
     if (['Z', 'Q', 'S', 'D'].includes(key) && !keyStatus[key]) {
         keyStatus[getKeyName(key)] = true;
@@ -31,7 +46,7 @@ function toggleButton(key) {
     button.disabled = !keyStatus[key];
 }
 
-function publishKey(key) {
+function publishKey() {
     let vector = { x: 0, y: 0 };
 
     if (keyStatus['forward']) {
@@ -51,8 +66,13 @@ function publishKey(key) {
     }
     const normVector = { x: vector.x / size, y: vector.y / size };
     const timestamp = Date.now()
-    const jsonMessage = JSON.stringify({normVector, timestamp});
-    sendData(jsonMessage, "Robot/input");
+    const jsonMessage = JSON.stringify({
+        type: "INPUT",
+        data: {normVector, timestamp}
+    });
+
+    console.log(inputSocket.readyState == WebSocket.OPEN);
+    inputSocket.send(jsonMessage);
 }
 
 function getKeyName(key) {
